@@ -24,8 +24,12 @@ class Board
         end
     end
 
-    def render
-        @board.each do |row|
+    def reveal_board
+        print "  "
+        (0...@board.length).each { |num| print "#{num} " }
+        puts
+        @board.each_with_index do |row, idx|
+            print "#{idx} "
             row.each do |square|
                 print "#{square.value} "
             end
@@ -34,4 +38,4 @@ class Board
     end
 end
 
-Board.new.render
+Board.new.reveal_board
