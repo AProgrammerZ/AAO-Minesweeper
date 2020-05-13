@@ -3,7 +3,7 @@ require_relative "./tile.rb"
 
 class Board
     def initialize
-        @board = Array.new(9) {Array.new(9)}
+        @board = Array.new(9) { Array.new(9) }
         self.fill_with_tiles
         self.seed_bombs
     end
@@ -23,4 +23,15 @@ class Board
             end
         end
     end
+
+    def render
+        @board.each do |row|
+            row.each do |square|
+                print "#{square.value} "
+            end
+            puts
+        end
+    end
 end
+
+Board.new.render
