@@ -3,6 +3,8 @@ require 'colorize'
 require_relative "./tile.rb"
 
 class Board
+    attr_reader :board
+
     def initialize
         @board = Array.new(9) { Array.new(9) }
         self.fill_with_Tiles
