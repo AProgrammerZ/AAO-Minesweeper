@@ -5,12 +5,12 @@ require_relative "./tile.rb"
 class Board
     def initialize
         @board = Array.new(9) { Array.new(9) }
-        self.fill_with_tiles
+        self.fill_with_Tiles
         self.seed_bombs
     end
 
-    def fill_with_tiles
-        @board.map! { |row| row.map! { |square| Tile.new } }            
+    def fill_with_Tiles
+        @board.map! { |row| row.map! { |square| Tile.new(@board) } }            
     end
     
     def seed_bombs
@@ -27,10 +27,10 @@ class Board
 
     def reveal_board
         print "  "
-        (0...@board.length).each { |num| print "#{num.to_s.colorize(:blue)} " }
+        (0...@board.length).each { |num| print "#{num.to_s.colorize(:yellow)} " }
         puts
         @board.each_with_index do |row, idx|
-            print "#{idx.to_s.colorize(:blue)} "
+            print "#{idx.to_s.colorize(:yellow)} "
             row.each do |square|
                 print "#{square.value} "
             end
@@ -39,4 +39,4 @@ class Board
     end
 end
 
-Board.new.reveal_board
+# Board.new.reveal_board
