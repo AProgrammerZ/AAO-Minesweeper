@@ -1,4 +1,5 @@
 require "byebug"
+require 'colorize'
 require_relative "./tile.rb"
 
 class Board
@@ -26,10 +27,10 @@ class Board
 
     def reveal_board
         print "  "
-        (0...@board.length).each { |num| print "#{num} " }
+        (0...@board.length).each { |num| print "#{num.to_s.colorize(:blue)} " }
         puts
         @board.each_with_index do |row, idx|
-            print "#{idx} "
+            print "#{idx.to_s.colorize(:blue)} "
             row.each do |square|
                 print "#{square.value} "
             end
