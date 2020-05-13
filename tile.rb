@@ -1,3 +1,5 @@
+require 'colorize'
+
 class Tile
     attr_reader :value
 
@@ -6,6 +8,6 @@ class Tile
     end
 
     def set_bomb
-        @value = "B"
+        @value = "B".colorize(:red)
     end
 end
