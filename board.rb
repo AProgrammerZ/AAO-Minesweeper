@@ -40,5 +40,3 @@ class Board
         end
     end
 end
-
-# Board.new.reveal_board
