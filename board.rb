@@ -63,9 +63,5 @@ class Board
         end
 
         hidden_board
-    end
-
-    # def done?
-
-    # end
+    end    
 end
