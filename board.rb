@@ -9,6 +9,7 @@ class Board
         @board = Array.new(9) { Array.new(9) }
         self.fill_with_Tiles
         self.seed_bombs
+        self.set_fringe_and_interior_tiles
     end
 
     def fill_with_Tiles
@@ -23,6 +24,15 @@ class Board
             unless @board[random_row_num][random_tile_num].value == "B"
                 @board[random_row_num][random_tile_num].set_bomb 
                 bomb_count += 1
+            end
+        end
+    end
+
+    def set_fringe_and_interior_tiles
+        @board.each do |row|
+            row.each do |square|
+                square.value = square.neighbor_bomb_count unless square.value == "B".colorize(:red)
+                square.value = "_" if square.value == 0
             end
         end
     end

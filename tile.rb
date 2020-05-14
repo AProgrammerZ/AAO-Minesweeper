@@ -3,7 +3,7 @@ require 'colorize'
 require_relative "./board.rb"
 
 class Tile
-    attr_reader :value
+    attr_accessor :value
 
     def initialize(board_of_tile)
         @value = "*"
