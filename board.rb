@@ -51,17 +51,21 @@ class Board
         return
     end
 
-    def show_hidden_board
-        print "  "
-        (0...@board.length).each { |num| print "#{num.to_s.colorize(:yellow)} " }
-        puts
-        @board.each_with_index do |row, idx|
-            print "#{idx.to_s.colorize(:yellow)} "
+    def make_hidden_board
+        hidden_board = []
+        
+        @board.each do |row|
+            new_row = []
             row.each do |square|
-                print "* "
+                new_row << "*"
             end
-            puts
+            hidden_board << new_row
         end
-        return
+
+        hidden_board
     end
+
+    # def done?
+
+    # end
 end
