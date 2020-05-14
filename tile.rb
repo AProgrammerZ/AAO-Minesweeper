@@ -1,13 +1,14 @@
 require "byebug"
-require 'colorize'
 require_relative "./board.rb"
 
 class Tile
     attr_accessor :value
+    attr_reader :revealed
 
     def initialize(board_of_tile)
-        @value = "*"
+        @value = nil
         @board_of_tile = board_of_tile
+        @revealed = false
     end
 
     def inspect
@@ -15,8 +16,12 @@ class Tile
     end
 
     def set_bomb
-        @value = "B".colorize(:red)
+        @value = "B"
     end   
+
+    def bombed?
+        @value == "B"
+    end
 
     def neighbors
         neighbors = []
@@ -57,6 +62,6 @@ class Tile
     def neighbor_bomb_count
         neighbors = self.neighbors
 
-        neighbors.count { |tile| tile.value == "B".colorize(:red) }
-    end
+        neighbors.count { |tile| tile.bombed? }
+    end    
 end
