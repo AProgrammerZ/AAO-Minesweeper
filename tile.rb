@@ -53,4 +53,10 @@ class Tile
             end            
         end
     end    
+
+    def neighbor_bomb_count
+        neighbors = self.neighbors
+
+        neighbors.count { |tile| tile.value == "B".colorize(:red) }
+    end
 end

@@ -1,11 +1,14 @@
 require_relative "./tile.rb"
 require_relative "./board.rb"
 
-# first square's neighbors
-Board.new.board.each_with_index do |row, idx|
+b = Board.new
+
+puts b.reveal_board
+
+b.board.each_with_index do |row, idx|
     puts "Row #{idx}:"
     row.each do |square|                
-        p square.neighbors
-        puts
+        print square.neighbor_bomb_count        
     end  
+    puts
 end
