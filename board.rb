@@ -50,4 +50,18 @@ class Board
         end
         return
     end
+
+    def show_hidden_board
+        print "  "
+        (0...@board.length).each { |num| print "#{num.to_s.colorize(:yellow)} " }
+        puts
+        @board.each_with_index do |row, idx|
+            print "#{idx.to_s.colorize(:yellow)} "
+            row.each do |square|
+                print "* "
+            end
+            puts
+        end
+        return
+    end
 end
