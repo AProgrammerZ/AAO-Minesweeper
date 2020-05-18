@@ -77,4 +77,23 @@ class Board
         end
         return
     end    
+
+    # def reveal_neighbors(neighbors)
+    #     # debugger
+    #     # base case
+    #     return true if neighbors.empty?
+        
+    #     next_neighbors = []
+
+    #     neighbors.each do |square|
+    #         square.neighbors.each do |square_neighbor| 
+    #             unless square_neighbor.bombed?
+    #                 square_neighbor.reveal 
+    #                 next_neighbors << square_neighbor
+    #             end 
+    #         end
+    #     end
+
+    #     return reveal_neighbors(next_neighbors)
+    # end
 end
