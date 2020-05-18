@@ -27,7 +27,6 @@ class Game
                 end
             # elsif r_or_f == "f"
                 
-                # merge gameplay branch into master branch, delete it from computer, then make flag branch...
 
             # end            
             system "clear"
