@@ -22,13 +22,12 @@ class Game
                     puts "You lost."
                     return 
                 else
-                    selected_square.reveal
-                    # selected_square.neighbors.each(&:reveal) if selected_square.neighbor_bomb_count == 0
-                    # self.reveal_neighbors(selected_square.neighbors)
+                    selected_square.reveal                    
                     self.reveal_neighbors(selected_square)
                 end
             # elsif r_or_f == "f"
                 
+                # merge gameplay branch into master branch, delete it from computer, then make flag branch...
 
             # end            
             system "clear"
