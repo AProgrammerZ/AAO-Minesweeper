@@ -63,7 +63,7 @@ class Board
         @board.each_with_index do |row, idx|
             print "#{idx.to_s.colorize(:yellow)} "
             row.each do |square|
-                if square.revealed
+                if square.revealed?
                     if square.bombed?
                         print "#{square.value.colorize(:red)} " 
                     else

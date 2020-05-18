@@ -3,7 +3,6 @@ require_relative "./board.rb"
 
 class Tile
     attr_accessor :value
-    attr_reader :revealed
 
     def initialize(board_of_tile)
         @value = nil
@@ -21,6 +20,14 @@ class Tile
 
     def bombed?
         @value == "B"
+    end
+
+    def reveal
+        @revealed = true
+    end
+
+    def revealed?
+        @revealed == true
     end
 
     def neighbors
