@@ -48,8 +48,6 @@ class Tile
 
         my_row, my_col = self.location        
 
-                        # maybe make this recursive or a loop
-
         neighbors << @board_of_tile[my_row][my_col+1] unless my_col == 8 
         neighbors << @board_of_tile[my_row][my_col-1] unless my_col == 0
         
