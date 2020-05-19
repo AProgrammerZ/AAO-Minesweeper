@@ -8,7 +8,7 @@ class Game
     end
 
     def run
-        until self.done? do
+        until @board.done? do
             @board.render
             r_or_f, row, col = get_user_input
             selected_square = @board.board[row.to_i][col.to_i] 
@@ -23,7 +23,7 @@ class Game
                     return 
                 else
                     selected_square.reveal                    
-                    self.reveal_neighbors(selected_square)
+                    @board.reveal_neighbors(selected_square)
                 end
             else
                 selected_square.flag
@@ -45,24 +45,7 @@ class Game
         # add error checking (maybe put in a seperate method)
         # also for checking if input of "r" for a flagged position
 
-    end
-                    # move the following two methods to board.rb
-    def done?
-        bomb_free_squares = @board.board.flatten.reject(&:bombed?)
-        bomb_free_squares.all?(&:revealed?)
-    end
-                                                                               
-    def reveal_neighbors(square)
-        return if square.neighbors.any?(&:bombed?)
-        return if square.neighbors.all?(&:revealed?)        
-        
-        square.neighbors.each do |square_neighbor| 
-            unless square_neighbor.bombed? || square_neighbor.revealed? || square_neighbor.flagged?
-                square_neighbor.reveal
-                reveal_neighbors(square_neighbor)
-            end
-        end
-    end
+    end                    
 end
 
 Game.new.run

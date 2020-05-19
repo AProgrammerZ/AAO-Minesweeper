@@ -83,22 +83,20 @@ class Board
         return
     end    
 
-    # def reveal_neighbors(neighbors)
-    #     # debugger
-    #     # base case
-    #     return true if neighbors.empty?
+    def done?
+        bomb_free_squares = @board.flatten.reject(&:bombed?)
+        bomb_free_squares.all?(&:revealed?)
+    end
+                                                                               
+    def reveal_neighbors(square)
+        return if square.neighbors.any?(&:bombed?)
+        return if square.neighbors.all?(&:revealed?)        
         
-    #     next_neighbors = []
-
-    #     neighbors.each do |square|
-    #         square.neighbors.each do |square_neighbor| 
-    #             unless square_neighbor.bombed?
-    #                 square_neighbor.reveal 
-    #                 next_neighbors << square_neighbor
-    #             end 
-    #         end
-    #     end
-
-    #     return reveal_neighbors(next_neighbors)
-    # end
+        square.neighbors.each do |square_neighbor| 
+            unless square_neighbor.bombed? || square_neighbor.revealed? || square_neighbor.flagged?
+                square_neighbor.reveal
+                reveal_neighbors(square_neighbor)
+            end
+        end
+    end
 end
