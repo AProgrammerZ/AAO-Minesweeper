@@ -38,6 +38,9 @@ class Board
     end
 
     # delete after testing
+
+                    # use this to test if game stops after winning
+
     # def reveal_board
     #     print "  "
     #     (0...@board.length).each { |num| print "#{num.to_s.colorize(:yellow)} " }
@@ -65,10 +68,12 @@ class Board
             row.each do |square|
                 if square.revealed?
                     if square.bombed?
-                        print "#{square.value.colorize(:red)} " 
+                        print "#{square.value.colorize(:red)} "                     
                     else
                         print "#{square.value} " 
                     end
+                elsif square.flagged?
+                    print "F ".colorize(:green)
                 else
                     print "* "
                 end

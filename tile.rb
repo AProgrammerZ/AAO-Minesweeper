@@ -8,6 +8,7 @@ class Tile
         @value = nil
         @board_of_tile = board_of_tile
         @revealed = false
+        @flagged = false
     end
 
     def inspect
@@ -28,6 +29,14 @@ class Tile
 
     def revealed?
         @revealed == true
+    end
+
+    def flag
+        @flagged = true
+    end
+
+    def flagged?
+        @flagged == true
     end
 
     def neighbors

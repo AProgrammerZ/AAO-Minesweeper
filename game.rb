@@ -25,12 +25,10 @@ class Game
                     selected_square.reveal                    
                     self.reveal_neighbors(selected_square)
                 end
-            # elsif r_or_f == "f"
-                
-
-            # end            
-            system "clear"
+            else
+                selected_square.flag
             end            
+            system "clear"
         end
         
         @board.render
@@ -39,26 +37,27 @@ class Game
 
     def get_user_input
         puts
-        puts "Enter reveal or flag (r or f)"
+        puts "Enter reveal or flag/unflag (r or f)"
         puts "followed by the coordinates of square"
         puts "(for example: r, 2,3)"
         gets.chomp.split(",")
         
-        # add error checking
+        # add error checking (maybe put in a seperate method)
+        # also for checking if input of "r" for a flagged position
 
     end
-
+                    # move the following two methods to board.rb
     def done?
         bomb_free_squares = @board.board.flatten.reject(&:bombed?)
         bomb_free_squares.all?(&:revealed?)
     end
-
+                                                                               
     def reveal_neighbors(square)
         return if square.neighbors.any?(&:bombed?)
         return if square.neighbors.all?(&:revealed?)        
         
         square.neighbors.each do |square_neighbor| 
-            unless square_neighbor.bombed? || square_neighbor.revealed?
+            unless square_neighbor.bombed? || square_neighbor.revealed? || square_neighbor.flagged?
                 square_neighbor.reveal
                 reveal_neighbors(square_neighbor)
             end
