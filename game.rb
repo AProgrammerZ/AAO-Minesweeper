@@ -40,12 +40,30 @@ class Game
         puts "Enter reveal or flag/unflag (r or f)"
         puts "followed by the coordinates of square"
         puts "(for example: r, 2,3)"
-        gets.chomp.split(",")
+        response = gets.chomp.split(",")            
         
-        # add error checking (maybe put in a seperate method)
-        # also for checking if input of "r" for a flagged position
+        begin
+            self.check_for_errors(response)
+        rescue
+            puts "Incorrect input. Please try again."
+            sleep 1
+            system "clear"
+            @board.render
+            self.get_user_input
+        end
+        
+        response
+    end
 
-    end                    
+    def check_for_errors(response)        
+        r_or_f, row, col = response
+
+        raise "error" unless ["r", "f"].include?(r_or_f)
+        raise "error" unless (0..8).to_a.include?(row.to_i)           
+        raise "error" unless (0..8).to_a.include?(col.to_i)
+        
+        raise "error" if r_or_f == "r" && @board.board[row.to_i][col.to_i].flagged?                  
+    end
 end
 
 Game.new.run

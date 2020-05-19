@@ -31,8 +31,12 @@ class Tile
         @revealed == true
     end
 
-    def flag
-        @flagged = true
+    def flag # /unflag
+        if @flagged == false
+            @flagged = true 
+        else
+            @flagged = false
+        end
     end
 
     def flagged?
