@@ -1,4 +1,3 @@
-require_relative "./tile.rb"
 require_relative "./board.rb"
 require 'yaml'
 
