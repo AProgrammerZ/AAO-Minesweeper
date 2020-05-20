@@ -46,9 +46,11 @@ class Board
             row.each do |square|
                 if square.revealed?
                     if square.bombed?
-                        print "#{square.value.colorize(:red)} "                     
+                        print "#{square.value.colorize(:red)} "                 
+                    elsif square.value.is_a?(Numeric)
+                        print "#{square.value.to_s.colorize(:light_blue)} "
                     else
-                        print "#{square.value} " 
+                        print "#{square.value} "
                     end
                 elsif square.flagged?
                     print "F ".colorize(:green)
