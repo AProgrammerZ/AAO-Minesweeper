@@ -4,10 +4,19 @@ require 'yaml'
 
 class Game       
     def initialize
-        @board = Board.new
+        n_or_l, filename = self.new_or_load
+        
+        if n_or_l == "n"
+            @board = Board.new
+            self.run
+        elsif n_or_l == "l"
+            saved_game = YAML::load(File.read("#{filename.strip}.yml"))
+            saved_game.run
+        end
     end
 
     def run                
+        system "clear"        
         until @board.done? do
             @board.render
             r_f_or_s, row, col = get_user_input
@@ -43,7 +52,7 @@ class Game
         puts
         puts "Enter reveal or flag/unflag or save (r or f or s)"
         puts "followed by the coordinates of square, or new/old filename."
-        puts "(For example: r, 2,3 OR s, minesweeper)."
+        puts "(For example: r, 2,3 OR f,4,6 OR s, minesweeper)."
         response = gets.chomp.split(",")            
         
         begin
@@ -68,25 +77,18 @@ class Game
             raise "error" unless (0..8).to_a.include?(col.to_i)
             
             raise "error" if r_or_f == "r" && @board.board[row.to_i][col.to_i].flagged?
+            raise "error" if r_or_f == "f" && @board.board[row.to_i][col.to_i].revealed?   
+            raise "error" if r_or_f == "r" && @board.board[row.to_i][col.to_i].revealed?                 
         end                  
     end
 
     def new_or_load
         system "clear"
 
-        puts "\nPlease enter if you would like to either start a new game or load a previously saved game."
+        puts "Please enter if you would like to either start a new game or load a previously saved game."
         puts "If load, also enter the name of the saved game file."
         puts "(For example: n or l, bob)."
         n_or_l, filename = gets.chomp.split(",")
-
-        system "clear"
-
-        if n_or_l == "l"
-            saved_game = YAML::load(File.read("#{filename.strip}.yml"))
-            saved_game.run
-        elsif n_or_l == "n"
-            self.run
-        end
     end
 
     def save_game(filename)
@@ -94,4 +96,4 @@ class Game
     end
 end
 
-Game.new.new_or_load                                                                
+Game.new
