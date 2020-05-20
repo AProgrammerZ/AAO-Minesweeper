@@ -94,10 +94,4 @@ class Game
     end
 end
 
-Game.new.new_or_load
-                        
-                        
-                        # later on, fix reveal_neighbors method 
-                        # (if there is even one neighbor that is bombed, 
-                        # then it wont reveal all the other neighbors)
-                        # (so it might just reveal the selected square, and thats it)
+Game.new.new_or_load                                                                
