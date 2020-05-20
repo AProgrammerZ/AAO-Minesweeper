@@ -35,29 +35,7 @@ class Board
                 square.value = "_" if square.value == 0
             end
         end
-    end
-
-    # delete after testing
-
-                    # use this to test if game stops after winning
-
-    # def reveal_board
-    #     print "  "
-    #     (0...@board.length).each { |num| print "#{num.to_s.colorize(:yellow)} " }
-    #     puts
-    #     @board.each_with_index do |row, idx|
-    #         print "#{idx.to_s.colorize(:yellow)} "
-    #         row.each do |square|
-    #             if square.bombed?
-    #                 print "#{square.value.colorize(:red)} " 
-    #             else
-    #                 print "#{square.value} " 
-    #             end
-    #         end
-    #         puts
-    #     end
-    #     return
-    # end
+    end    
 
     def render
         print "  "

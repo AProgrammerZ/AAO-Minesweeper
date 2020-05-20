@@ -2,7 +2,7 @@ require_relative "./tile.rb"
 require_relative "./board.rb"
 require 'yaml'
 
-class Game        
+class Game       
     def initialize
         @board = Board.new
     end
