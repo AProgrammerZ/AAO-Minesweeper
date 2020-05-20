@@ -7,7 +7,7 @@ class Game
         @board = Board.new
     end
 
-    def run
+    def run                
         until @board.done? do
             @board.render
             r_or_f, row, col = get_user_input
@@ -42,8 +42,8 @@ class Game
     def get_user_input
         puts
         puts "Enter reveal or flag/unflag or save (r or f or s)"
-        puts "followed by the coordinates of square"
-        puts "(for example: r, 2,3)"
+        puts "followed by the coordinates of square."
+        puts "(For example: r, 2,3)."
         response = gets.chomp.split(",")            
         
         begin
@@ -71,14 +71,36 @@ class Game
         end                  
     end
 
+    def new_or_load
+        system "clear"
+
+        puts "\nPlease enter if you would like to either start a new game or load a previously saved game."
+        puts "If load, also enter the name of the saved game file."
+        puts "(For example: n or l, example.yml)."
+        n_or_l, filename = gets.chomp.split(",")
+
+        system "clear"
+
+        if n_or_l == "l"
+            saved_game = YAML::load(File.read(filename.strip))
+            saved_game.run
+        elsif n_or_l == "n"
+            self.run
+        end
+    end
+
     def save_game
         File.open("minesweeper.yml", "w") { |file| file.write(self.to_yaml) }
     end
 end
 
-Game.new.run
+Game.new.new_or_load
+                        
+                        
+                        # add functionality to save the game with a specific name
 
-# If loading a saved game:
 
-# saved_game = YAML::load(File.read("minesweeper.yml"))
-# saved_game.run
+                        # later on, fix reveal_neighbors method 
+                        # (if there is even one neighbor that is bombed, 
+                        # then it wont reveal all the other neighbors)
+                        # (so it might just reveal the selected square, and thats it)

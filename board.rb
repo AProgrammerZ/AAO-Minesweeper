@@ -91,6 +91,8 @@ class Board
     def reveal_neighbors(square)
         return if square.neighbors.any?(&:bombed?)
         return if square.neighbors.all?(&:revealed?)        
+        # didnt work:
+        # return if square.neighbors.all? { |neighbor| neighbor.value.is_a? Numeric || neighbor.revealed? }
         
         square.neighbors.each do |square_neighbor| 
             unless square_neighbor.bombed? || square_neighbor.revealed? || square_neighbor.flagged?
