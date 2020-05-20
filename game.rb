@@ -10,10 +10,10 @@ class Game
     def run                
         until @board.done? do
             @board.render
-            r_or_f, row, col = get_user_input
+            r_f_or_s, row, col = get_user_input
             selected_square = @board.board[row.to_i][col.to_i] 
             
-            if r_or_f == "r"
+            if r_f_or_s == "r"
                 if selected_square.bombed?
                     system "clear"
                     all_bombed_squares = @board.board.flatten.select(&:bombed?)
@@ -25,10 +25,10 @@ class Game
                     selected_square.reveal                    
                     @board.reveal_neighbors(selected_square)
                 end
-            elsif r_or_f == "f"
+            elsif r_f_or_s == "f"
                 selected_square.flag
             else
-                self.save_game
+                self.save_game(row.strip)
                 puts "Game saved."
                 sleep 1
             end            
@@ -42,8 +42,8 @@ class Game
     def get_user_input
         puts
         puts "Enter reveal or flag/unflag or save (r or f or s)"
-        puts "followed by the coordinates of square."
-        puts "(For example: r, 2,3)."
+        puts "followed by the coordinates of square, or new/old filename."
+        puts "(For example: r, 2,3 OR s, minesweeper)."
         response = gets.chomp.split(",")            
         
         begin
@@ -76,30 +76,27 @@ class Game
 
         puts "\nPlease enter if you would like to either start a new game or load a previously saved game."
         puts "If load, also enter the name of the saved game file."
-        puts "(For example: n or l, example.yml)."
+        puts "(For example: n or l, bob)."
         n_or_l, filename = gets.chomp.split(",")
 
         system "clear"
 
         if n_or_l == "l"
-            saved_game = YAML::load(File.read(filename.strip))
+            saved_game = YAML::load(File.read("#{filename.strip}.yml"))
             saved_game.run
         elsif n_or_l == "n"
             self.run
         end
     end
 
-    def save_game
-        File.open("minesweeper.yml", "w") { |file| file.write(self.to_yaml) }
+    def save_game(filename)
+        File.open("#{filename}.yml", "w") { |file| file.write(self.to_yaml) }
     end
 end
 
 Game.new.new_or_load
                         
                         
-                        # add functionality to save the game with a specific name
-
-
                         # later on, fix reveal_neighbors method 
                         # (if there is even one neighbor that is bombed, 
                         # then it wont reveal all the other neighbors)
