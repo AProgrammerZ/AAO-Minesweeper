@@ -68,16 +68,16 @@ class Game
     end
 
     def check_for_errors(response)        
-        r_or_f, row, col = response
+        r_f_or_s, row, col = response
         
-        raise "error" unless ["r", "f", "s"].include?(r_or_f)
-        if r_or_f == "r" || r_or_f == "f"
-            raise "error" unless (0..8).to_a.include?(row.to_i)           
-            raise "error" unless (0..8).to_a.include?(col.to_i)
+        raise "error" unless ["r", "f", "s"].include?(r_f_or_s)
+        if r_f_or_s == "r" || r_f_or_s == "f"
+            raise "error" unless ("0".."8").to_a.include?(row)           
+            raise "error" unless ("0".."8").to_a.include?(col)
             
-            raise "error" if r_or_f == "r" && @board.board[row.to_i][col.to_i].flagged?
-            raise "error" if r_or_f == "f" && @board.board[row.to_i][col.to_i].revealed?   
-            raise "error" if r_or_f == "r" && @board.board[row.to_i][col.to_i].revealed?                 
+            raise "error" if r_f_or_s == "r" && @board.board[row.to_i][col.to_i].flagged?
+            raise "error" if r_f_or_s == "f" && @board.board[row.to_i][col.to_i].revealed?   
+            raise "error" if r_f_or_s == "r" && @board.board[row.to_i][col.to_i].revealed?                 
         end                  
     end
 
