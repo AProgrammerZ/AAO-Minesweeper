@@ -3,9 +3,11 @@ require 'yaml'
 
 class Game       
     def initialize
-        n_or_l, filename = self.new_or_load
+        n_or_l, filename = self.new_or_load?
         
         if n_or_l == "n"
+            system "clear"
+            difficulty = self.difficulty?
             @board = Board.new
             self.run
         elsif n_or_l == "l"
@@ -81,7 +83,7 @@ class Game
         end                  
     end
 
-    def new_or_load
+    def new_or_load?
         system "clear"
 
         puts "Please enter if you would like to either start a new game or load a previously saved game."
@@ -90,6 +92,23 @@ class Game
         n_or_l, filename = gets.chomp.split(",")
     end
 
+    def difficulty?
+        puts "Please enter a difficulty level (beginner, intermediate, or expert)"
+        puts "(Enter: b, i, or e)"
+        response = gets.chomp
+       
+        begin
+            raise unless ["b","i","e"].include?(response)
+        rescue
+            puts "Incorrect input. Please try again."
+            sleep 1
+            system "clear"            
+            response = self.difficulty?
+        end
+
+        response
+    end    
+
     def save_game(filename)
         File.open("#{filename}.yml", "w") { |file| file.write(self.to_yaml) }
     end
@@ -97,8 +116,4 @@ end
 
 if __FILE__ == $PROGRAM_NAME
   Game.new
-end
-
-                        # make a new branch
-                        # then add functionality to new_or_load 
-                        # for difficulty level (see game online)
+end                        
