@@ -1,8 +1,3 @@
-# AAO-Minesweeper
-Project Description: 
-
-(https://open.appacademy.io/learn/full-stack-online/ruby/minesweeper)
-
 Minesweeper
 Read all these instructions first. There are useful hints at the end of this document.
 
