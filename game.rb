@@ -15,7 +15,7 @@ class Game
     end
 
     def run                
-        system "clear"        
+        system "clear" 
         until @board.done? do
             @board.render
             r_f_or_s, row, col = get_user_input
@@ -61,7 +61,7 @@ class Game
             sleep 1
             system "clear"
             @board.render
-            self.get_user_input
+            response = self.get_user_input
         end
         
         response
@@ -95,4 +95,10 @@ class Game
     end
 end
 
-Game.new
+if __FILE__ == $PROGRAM_NAME
+  Game.new
+end
+
+                        # make a new branch
+                        # then add functionality to new_or_load 
+                        # for difficulty level (see game online)
