@@ -30,7 +30,7 @@ class Board
         bomb_count = 0
         until bomb_count == @num_bombs do 
             random_row_num = rand(0...@board.length)
-            random_tile_num = rand(0...@board.length)
+            random_tile_num = rand(0...@board.transpose.length)
             unless @board[random_row_num][random_tile_num].value == "B"
                 @board[random_row_num][random_tile_num].set_bomb 
                 bomb_count += 1
@@ -49,7 +49,7 @@ class Board
 
     def render
         print "  "
-        (0...@board.length).each { |num| print "#{num.to_s.colorize(:yellow)} " }
+        (0...@board.transpose.length).each { |num| print "#{num.to_s.colorize(:yellow)} " }
         puts
         @board.each_with_index do |row, idx|
             print "#{idx.to_s.colorize(:yellow)} "

@@ -44,8 +44,8 @@ class Tile
     end
 
     def neighbors
-        num_rows = @board_of_tile.count
-        num_cols = @board_of_tile.transpose.count
+        num_rows = @board_of_tile.length
+        num_cols = @board_of_tile.transpose.length
         
         neighbors = []
 

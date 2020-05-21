@@ -72,10 +72,13 @@ class Game
     def check_for_errors(response)        
         r_f_or_s, row, col = response
         
+        num_rows = @board.board.length
+        num_cols = @board.board.transpose.length
+        
         raise "error" unless ["r", "f", "s"].include?(r_f_or_s)
         if r_f_or_s == "r" || r_f_or_s == "f"
-            raise "error" unless ("0".."8").to_a.include?(row)           
-            raise "error" unless ("0".."8").to_a.include?(col)
+            raise "error" unless ("0"..num_rows.to_s).to_a.include?(row)           
+            raise "error" unless ("0"..num_cols.to_s).to_a.include?(col)
             
             raise "error" if r_f_or_s == "r" && @board.board[row.to_i][col.to_i].flagged?
             raise "error" if r_f_or_s == "f" && @board.board[row.to_i][col.to_i].revealed?   
