@@ -44,22 +44,25 @@ class Tile
     end
 
     def neighbors
+        num_rows = @board_of_tile.count
+        num_cols = @board_of_tile.transpose.count
+        
         neighbors = []
 
         my_row, my_col = self.location        
 
-        neighbors << @board_of_tile[my_row][my_col+1] unless my_col == 8 
+        neighbors << @board_of_tile[my_row][my_col+1] unless my_col == num_cols - 1 
         neighbors << @board_of_tile[my_row][my_col-1] unless my_col == 0
         
         unless my_row == 0
             neighbors << @board_of_tile[my_row-1][my_col]
-            neighbors << @board_of_tile[my_row-1][my_col+1] unless my_col == 8
+            neighbors << @board_of_tile[my_row-1][my_col+1] unless my_col == num_cols - 1
             neighbors << @board_of_tile[my_row-1][my_col-1] unless my_col == 0
         end
 
-        unless my_row == 8
+        unless my_row == num_rows - 1
             neighbors << @board_of_tile[my_row+1][my_col]
-            neighbors << @board_of_tile[my_row+1][my_col+1] unless my_col == 8
+            neighbors << @board_of_tile[my_row+1][my_col+1] unless my_col == num_cols - 1
             neighbors << @board_of_tile[my_row+1][my_col-1] unless my_col == 0
         end
 

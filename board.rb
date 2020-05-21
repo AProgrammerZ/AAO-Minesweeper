@@ -5,8 +5,18 @@ require_relative "./tile.rb"
 class Board
     attr_reader :board
 
-    def initialize
-        @board = Array.new(9) { Array.new(9) }
+    def initialize(difficulty)
+        if difficulty == "b"
+            @board = Array.new(9) { Array.new(9) }
+            @num_bombs = 10
+        elsif difficulty == "i"
+            @board = Array.new(16) { Array.new(16) }
+            @num_bombs = 40
+        else 
+            @board = Array.new(16) { Array.new(30) }
+            @num_bombs = 99
+        end
+        
         self.fill_with_Tiles
         self.seed_bombs
         self.set_fringe_and_interior_tiles
@@ -18,7 +28,7 @@ class Board
     
     def seed_bombs
         bomb_count = 0
-        until bomb_count == 10 do 
+        until bomb_count == @num_bombs do 
             random_row_num = rand(0...@board.length)
             random_tile_num = rand(0...@board.length)
             unless @board[random_row_num][random_tile_num].value == "B"

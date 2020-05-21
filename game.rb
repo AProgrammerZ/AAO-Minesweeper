@@ -8,7 +8,7 @@ class Game
         if n_or_l == "n"
             system "clear"
             difficulty = self.difficulty?
-            @board = Board.new
+            @board = Board.new(difficulty)
             self.run
         elsif n_or_l == "l"
             saved_game = YAML::load(File.read("#{filename.strip}.yml"))
