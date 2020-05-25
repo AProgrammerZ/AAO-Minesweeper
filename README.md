@@ -1,105 +1,26 @@
-# AAO-Minesweeper
-Project Description: 
+Gameplay
 
-(https://open.appacademy.io/learn/full-stack-online/ruby/minesweeper)
+Minesweeper in Windows XP on Easy Mode (a 9x9 square grid)
+The goal of Minesweeper is to uncover all the squares on a grid that do not contain mines without being "blown up" by clicking on a square with a mine underneath. The location of the mines is discovered through a logical process (but that sometimes results in ambiguity). Clicking on the game board will reveal what is hidden underneath the chosen square or squares (a large number of blank squares [bordering 0 mines] may be revealed in one go if they are adjacent to each other). Some squares are blank while others contain numbers (from 1 to 8), with each number being the number of mines adjacent to the uncovered square.
 
-Minesweeper
-Read all these instructions first. There are useful hints at the end of this document.
+To help the player avoid hitting a mine, the location of a suspected mine can be marked by flagging it with the right mouse button. The game is won once all blank or numbered squares have been uncovered by the player without hitting a mine; any remaining mines not identified by flags are automatically flagged by the computer. However, in the event that a game is lost and the player had mistakenly flagged a safe square, that square will either appear with a red X, or else a red X covering the mine (both denoting the square as safe). The game board comes in three set sizes with a predetermined number of mines: "beginner", "intermediate", and "expert", although a "custom" option is available as well.[6]
 
-Everyone remembers Minesweeper (wiki), right? Let's build it!
+In early versions of the game, a cheat code let players peek beneath the tiles.[7]
 
-Learning Goals
-Be comfortable using git merge to merge a feature branch to the master branch
-Know how to create a remote repository and push to it
-Know how to use recursion to simplify complicated logic
-Know when to separate logic for different parts of your project into different classes
-Git a good start!
-Remember, we're using Git today, so we'll initialize a new repository.
+By the year 2000, the game had been given the name of Flower Field instead of Minesweeper in some translations of Windows 2000 (like the Italian version), featuring flowers instead of mines. Flower Field's gameplay was otherwise unchanged, as was the executable file name.[citation needed]
 
-$ git init
-Throughout the day, you should be committing frequently. Follow this sequence of commands each time you commit. Pay attention to the output of each command so that you understand what it's doing. Once you git how the commands work, you can develop your own routine, but for today, follow this sequence every time.
+Evolution
 
-$ git status
-$ git diff
-$ git add -A
-$ git status
-$ git diff --staged
-$ git commit -m "descriptive message about changes"
-$ git log
-Reveal
-Start by supporting a single grid size: 9x9; randomly seed it with bombs. The user has two choices each turn:
+The old look of Minesweeper in Windows 7, developed by Oberon Media (2007)
+Minesweeper Flags
+In 2003, Microsoft created a variation called Minesweeper Flags in MSN Messenger, which is played against an opponent with the objective to find the mines rather than the surrounding squares.[8]
 
-First, they can choose a square to reveal. If it contains a bomb, game over. Otherwise, it will be revealed. If none of its neighbors contains a bomb, then all the adjacent neighbors are also revealed. If any of the neighbors have no adjacent bombs, they too are revealed. Et cetera.
+Vista
+The game's color scheme changed with the release of Vista (from gray to either blue or green). The icons were updated to match the Aero look. It also came with a more peaceful "flower" motif (called "Flower Garden") to replace the landmines (a game style called "Minesweeper").[1] The visual change also allowed for the Board to be "Silver and Blue" or "Green".[9] This iteration of Minesweeper was created by Oberon Media. The controversy over the land mine theme of the game was settled by defaulting the appearance based on region so that "sensitive" areas used the flower theme, but some still wanted the game removed from Windows altogether.[9] The regionalization effort also included changing the game's name in some cases to match the theme.
 
-The "fringe" of the revealed area is squares all adjacent to a bomb (or corner). The fringe should be revealed and contain the count of adjacent bombs.
+Windows 8 and later
+Microsoft removed Minesweeper from Windows 8 and instead published a free equivalent on Microsoft Store. The new version is developed by Arkadium and is ad-supported.[10][11] The initial release was supported by 30 second video ads. Later releases had monthly and annual subscription options to remove the ads.[12][13][14] Multiple news outlets criticized the change as greedy.[15][16][17][18] This version updates both motifs (themes called "Modern" and "Garden" as of Windows 10). Daily challenges and an adventure mode were also added.
 
-The goal of the game is to reveal all the bomb-free squares; at this point the game ends and the player wins.
+As of Windows 10, the non-premium version has six modes of play: Easy (9x9), Medium (16x16), Expert (30x16), Custom, Adventure, and Daily Challenges. The two themes are "Modern theme" and "Garden theme". On the main menu, there are sections for Awards, Leaderboards, Statistics, and Tutorials. But if the window is resized to be much smaller, then it becomes impossible to change the theme. If the game window is made larger, the full menu is available and the theme can be changed.
 
-Flag bomb
-The user may also flag a square as containing a bomb. A flagged square cannot be revealed unless it is unflagged first. It's possible to flag a square incorrectly, so the behavior should be the same regardless of whether there's a bomb in that square.
-
-Flags are there to help the user keep track of bombs and do not factor into the win condition. Once every square that isn't a bomb has been revealed, the player wins regardless of whether they've flagged all the remaining squares.
-
-User interaction
-You decide how to display the current game state to the user. I recommend * for unexplored squares, _ for "interior" squares when exploring, and a one-digit number for "fringe" squares. I'd put an F for flagged spots.
-
-You decide how the user inputs their choice. I recommend a coordinate system. Perhaps they should prefix their choice with either "r" for reveal or "f" for flag.
-
-Code Review
-After you have your UI working, request a code review from your TA and have them check your commit log. Take notes and refactor before moving on.
-
-Git a new feature!
-By now you should be starting to git the commit workflow. Let's take things to the next level with branches!
-
-Create a new branch for your new feature and checkout that branch:
-
-$ git branch save-game
-$ git checkout save-game
-Commit on this "feature branch" until your feature is done. Then switch back to master and merge the branch in.
-
-$ git checkout master
-$ git merge save-game
-Finally, delete the feature branch. It's been merged, so you no longer need it.
-
-$ git branch -d save-game
-Git shorter.
-This is also a good time to mention that the student computers have a bunch of useful Git aliases that save you typing! These include:
-
-git co => git checkout
-git s => git status
-git l => super awesome version of git log
-Type git alias to see them all.
-
-Saving Games
-Add save/load functionality. Use YAML to let users save/load their minesweeper game to/from a file. Be sure to use a branch for this feature.
-
-Reference the readings on serialization.
-
-Bonus Features
-Start implementing the following features. Before you begin each feature, create a feature branch for it and then merge that branch back in when you're done.
-
-Colorize!
-Cursor Input! (This is a good starting point)
-Track the time it takes for the user to solve the game. You might keep track of the ten best times in a leaderboard, too. You could keep separate lists for the different sizes. It's up to you!
-Git your project online!
-At the end of the day, however far you get in the project, you should push your code to Github. That way it's saved online and you can access it from anywhere. Some projects make good showpieces during the job search, so it's often a good idea to do this.
-
-Each of you will need to login to Github and create a new repository. Do not include a README.md or .gitignore. It should be completely empty.
-
-add each repository as a remote
-
-$ git remote add partner1 https://github.com/partner1/minesweeper.git
-$ git remote add partner2 https://github.com/partner2/minesweeper.git
-push your code
-$ git push partner1 master
-$ git push partner2 master
-NB: If you want the commits to be under your name as opposed to "aastudent", rewrite the Git authorship before each push.
-
-Hints
-I think you should have a Tile class; there's a lot of information to track about a Tile (bombed? flagged? revealed?) and some helpful methods you could write (#reveal, #neighbors, #neighbor_bomb_count). I would also have a Board class.
-
-You should separate logic pertaining to Game UI and turn-taking from the Tile/Board classes.
-
-You'll want to pass the Board to the Tile on initialize so the Tile instance can use it to find its neighbors. But then if at some point you use p to print out a Tile instance, you'll get way more info than you need, as the data for the Board it holds will also be printed. You can fix this by overriding (defining) the inspect method in your Tile class, having it return a string that contains just the info you want (e.g. the Tiles position and bombed, flagged, etc. state). See here for more info if you need a refresher on how to do this.
-
-If you use command line arguments and ARGV to specify the name of the save file to load, you may be surprised to find that console input is broken. This ruby-forum.com post explains how gets interacts with ARGV/ARGF.
+Some of the game options are only relevant for a touchscreen, like the flag mode and swiping.
