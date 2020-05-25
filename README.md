@@ -5,7 +5,7 @@
 # Minesweeper
 ### Read all these instructions first. There are useful hints at the end of this document.
 
-Everyone remembers Minesweeper (wiki), right? Let's build it!
+Everyone remembers [Minesweeper](http://minesweeperonline.com/#beginner) ([wiki](https://en.wikipedia.org/wiki/Microsoft_Minesweeper)), right? Let's build it!
 
 # Learning Goals
 Be comfortable using git merge to merge a feature branch to the master branch
