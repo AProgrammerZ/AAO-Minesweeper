@@ -1,8 +1,9 @@
-Project Description: https://open.appacademy.io/learn/full-stack-online/ruby/minesweeper
+Project Description: 
+(https://open.appacademy.io/learn/full-stack-online/ruby/minesweeper)
 
 
-Minesweeper
-Read all these instructions first. There are useful hints at the end of this document.
+# Minesweeper
+### Read all these instructions first. There are useful hints at the end of this document.
 
 Everyone remembers Minesweeper (wiki), right? Let's build it!
 
