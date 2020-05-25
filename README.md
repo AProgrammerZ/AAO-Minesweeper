@@ -80,9 +80,9 @@ Reference the readings on serialization.
 ## Bonus Features
 Start implementing the following features. Before you begin each feature, create a feature branch for it and then merge that branch back in when you're done.
 
-Colorize!
-Cursor Input! (This is a good starting point)
-Track the time it takes for the user to solve the game. You might keep track of the ten best times in a leaderboard, too. You could keep separate lists for the different sizes. It's up to you!
+- Colorize!
+- Cursor Input! ([This](https://gist.github.com/acook/4190379) is a good starting point)
+- Track the time it takes for the user to solve the game. You might keep track of the ten best times in a leaderboard, too. You could keep separate lists for the different sizes. It's up to you!
 
 ## Git your project online!
 At the end of the day, however far you get in the project, you should push your code to Github. That way it's saved online and you can access it from anywhere. Some projects make good showpieces during the job search, so it's often a good idea to do this.
