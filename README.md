@@ -1,3 +1,5 @@
+(Solutions to all AAO projects are usually given).
+
 (https://open.appacademy.io/learn/full-stack-online/ruby/minesweeper)
 
 ### Project Description: 
